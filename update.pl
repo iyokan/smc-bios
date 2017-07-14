@@ -3,6 +3,9 @@
 use strict;
 use warnings;
 use LWP::UserAgent;
+use FindBin;
+
+chdir $FindBin::Bin or die $!;
 
 my $ua       = LWP::UserAgent->new;
 my $url      = 'https://www.supermicro.com/ResourceApps/BIOS_IPMI_Intel.html';
@@ -33,3 +36,7 @@ print $fh "SKU\tBIOS\tIPMI Firmware\n";
 for my $SKU (@SKU) {
     printf $fh "%s\t%s\t%s\n", $SKU, $version{$SKU}{BIOS}, $version{$SKU}{IPMI} // "";
 }
+close $fh or die $!;
+
+system qw|git commit -m 'no comment is good comment'|;
+system qw|git push|;
