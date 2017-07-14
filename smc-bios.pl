@@ -28,7 +28,7 @@ for my $tr ( $response->decoded_content =~ m{<tr[^>]+>(.*?)</tr>}gs ) {
     }
 }
 
-open my $fh, '>', 'README.tsv' or die $!;
+open my $fh, '>', 'version.tsv' or die $!;
 print $fh "SKU\tBIOS\tIPMI Firmware\n";
 for my $SKU (@SKU) {
     printf $fh "%s\t%s\t%s\n", $SKU, $version{$SKU}{BIOS}, $version{$SKU}{IPMI} // "";
