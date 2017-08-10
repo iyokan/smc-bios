@@ -39,5 +39,5 @@ for my $SKU (@SKU) {
 close $fh or die $!;
 
 exit if `git status --porcelain version.tsv` eq '';
-system qw|git commit -a -m |, 'no comment is good comment';
-system qw|git push|;
+system qw|git commit -q -a -m |, 'no comment is good comment';
+system qw|git push -q|;
